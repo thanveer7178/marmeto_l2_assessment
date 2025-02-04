@@ -40,9 +40,9 @@ function deleteCart(node)
             allNodes.forEach(element => 
                 {
                     total += parseInt(element.innerText.toString().match(/\d/ig).join("").slice(0,-2))
-                    localStorage.setItem('total',total)
                 }
             )
+            localStorage.setItem('total',total)
     
             subtotalPrice.innerText = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(
                 total)
@@ -102,27 +102,26 @@ function generateNode(sample)
             }
         )
 
-        localStorage.setItem('total',total)
         subtotalPrice.innerText = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(
             total)
-
+            
             totalPrice.innerText = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(
                 total)
-    })
-}
-
-function calculateQuanitity(price,node,value)
-{
-    let n = price;
-    let temp = node.parentElement.parentElement.children[2].textContent;
-    setTimeout(() => 
+            })
+        }
+        
+        function calculateQuanitity(price,node,value)
+        {
+            let n = price;
+            let temp = node.parentElement.parentElement.children[2].textContent;
+            setTimeout(() => 
     {
         node.parentElement.parentElement.children[4].innerText = 
         new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(
             parseInt(n) * value)
-    })
-
-    setTimeout(() => 
+        })
+        
+        setTimeout(() => 
     {
 
         let allNodes = document.querySelectorAll('.subtotal-quantity')
@@ -133,6 +132,7 @@ function calculateQuanitity(price,node,value)
                 total += parseInt(element.innerText.toString().match(/\d/ig).join("").slice(0,-2))
             }
         )
+        localStorage.setItem('total',total)
 
         subtotalPrice.innerText = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(
             total)
